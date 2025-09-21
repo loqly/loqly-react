@@ -1,0 +1,60 @@
+{
+  "name": "@loqly/react",
+  "version": "0.1.1",
+  "description": "The loqly React package helps you use the loqly platform for internationalization and copy management in React projects.",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.es.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "author": "https://github.com/loqly",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loqly/loqly-react"
+  },
+  "bugs": "https://github.com/loqly/loqly-react/issues",
+  "homepage": "https://loqly.dev",
+  "license": "MIT",
+  "keywords": [
+    "loqly",
+    "internationalization",
+    "i18n",
+    "localization",
+    "l10n",
+    "react"
+  ],
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@loqly/web": "^0.1.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "vite": "^6.3.6",
+    "@vitejs/plugin-react": "^4.2.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
