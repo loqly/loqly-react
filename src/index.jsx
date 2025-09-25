@@ -4,7 +4,6 @@ import Loqly from '@loqly/web'
 const LoqlyContext = createContext()
 
 export default function LoqlyReact({
-  apiKey = '',
   translations = {},
   defaultLocale = 'en',
   children,
@@ -13,12 +12,8 @@ export default function LoqlyReact({
   const [loadedTranslations, setLoadedTranslations] = useState(translations)
 
   useEffect(() => {
-    if (apiKey && Object.keys(translations).length === 0) {
-      Loqly.getTranslations(apiKey).then((fetched) => {
-        setLoadedTranslations(fetched)
-      })
-    }
-  }, [apiKey])
+    setLoadedTranslations(translations)
+  }, [translations])
 
   const t = (key) => {
     return loadedTranslations?.[key]?.[locale] ?? key

@@ -1,4 +1,4 @@
-import m, { createContext as E, useState as c, useEffect as p, useContext as y } from "react";
+import _, { createContext as f, useState as c, useEffect as m, useContext as p } from "react";
 const h = async (s) => {
   if (!s) throw new Error("API key is required");
   const t = window.location.href.includes("http://localhost") ? "http://localhost:3000" : "https://api.loqly.dev", e = await fetch(`${t}/v1/strings`, {
@@ -12,7 +12,7 @@ const h = async (s) => {
     throw new Error(a.error || "Something went wrong, please try again.");
   return a.strings ? a.strings : {};
 };
-class u {
+class E {
   constructor({ apiKey: t, defaultLocale: e = "en" }) {
     this.apiKey = t, this._defaultLocale = e, this._locale = e, this._translations = null, this._translatableElements = [];
   }
@@ -26,8 +26,8 @@ class u {
   }
   // Translation lookup with fallback
   t(t) {
-    var e, a, l, o;
-    return ((a = (e = this._translations) == null ? void 0 : e[t]) == null ? void 0 : a[this._locale]) || ((o = (l = this._translations) == null ? void 0 : l[t]) == null ? void 0 : o[this._defaultLocale]) || t;
+    var e, a, l, n;
+    return ((a = (e = this._translations) == null ? void 0 : e[t]) == null ? void 0 : a[this._locale]) || ((n = (l = this._translations) == null ? void 0 : l[t]) == null ? void 0 : n[this._defaultLocale]) || t;
   }
   // Cache all elements with data-t attribute
   cacheElements() {
@@ -70,30 +70,27 @@ class u {
     this._defaultLocale = t;
   }
 }
-const d = E();
-function w({
-  apiKey: s = "",
-  translations: t = {},
-  defaultLocale: e = "en",
-  children: a
+const u = f();
+function L({
+  translations: s = {},
+  defaultLocale: t = "en",
+  children: e
 }) {
-  const [l, o] = c(e), [r, g] = c(t);
-  p(() => {
-    s && Object.keys(t).length === 0 && u.getTranslations(s).then((n) => {
-      g(n);
-    });
+  const [a, l] = c(t), [n, r] = c(s);
+  m(() => {
+    r(s);
   }, [s]);
-  const f = (n) => {
+  const d = (o) => {
     var i;
-    return ((i = r == null ? void 0 : r[n]) == null ? void 0 : i[l]) ?? n;
-  }, _ = (n) => {
-    o(n);
+    return ((i = n == null ? void 0 : n[o]) == null ? void 0 : i[a]) ?? o;
+  }, g = (o) => {
+    l(o);
   };
-  return /* @__PURE__ */ m.createElement(d.Provider, { value: { t: f, updateLanguage: _, locale: l } }, a);
+  return /* @__PURE__ */ _.createElement(u.Provider, { value: { t: d, updateLanguage: g, locale: a } }, e);
 }
-const v = () => y(d), b = async (s) => await u.getTranslations(s);
+const w = () => p(u), v = async (s) => await E.getTranslations(s);
 export {
-  w as default,
-  b as getTranslations,
-  v as useLoqly
+  L as default,
+  v as getTranslations,
+  w as useLoqly
 };

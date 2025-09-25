@@ -1,6 +1,6 @@
 {
   "name": "@loqly/react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The loqly React package helps you use the loqly platform for internationalization and copy management in React projects.",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",

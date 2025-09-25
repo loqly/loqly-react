@@ -25,10 +25,12 @@ In your main.jsx, import **LoqlyReact** and wrap your App.
 ```js
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import LoqlyReact from '@loqly/react'
+import LoqlyReact, { getTranslations } from '@loqly/react'
+
+const translations = await getTranslation('your-loqly-api-key')
 
 createRoot(document.getElementById('root')).render(
-  <LoqlyReact apiKey='your-loqly-api-key' defaultLocale='en'>
+  <LoqlyReact translations={translations} defaultLocale='en'>
     <App />
   </LoqlyReact>
 )
