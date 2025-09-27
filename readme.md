@@ -2,8 +2,6 @@
 
 **loqly-react** is a JavaScript package that makes it easy to integrate [loqly](https://loqly.dev) for internationalization and copy management in your React projects.
 
-For detailed documentation and guides, visit the [loqly documentation](https://loqly.dev/documentation).
-
 ## Table of Contents
 
 - [Installation](#installation)
