@@ -4,6 +4,14 @@
 
 For detailed documentation and guides, visit the [loqly documentation](https://loqly.dev/documentation).
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Setup](#setup)
+- [Translating in Components](#translating-in-components)
+- [Interpolation](#interpolation)
+- [Updating the Langugae](#updating-the-language)
+
 ## Installation
 
 Install via npm
@@ -20,14 +28,25 @@ Include via script tag
 
 ## Setup
 
-In your main.jsx, import **LoqlyReact** and wrap your App.
+In your main.jsx, import **LoqlyReact** and wrap your App:
 
 ```js
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import LoqlyReact, { getTranslations } from '@loqly/react'
+import fallback from './translations.json'
 
-const translations = await getTranslation('your-loqly-api-key')
+const translations = await getTranslation(
+  'your-loqly-api-key',
+
+  // Optional configuration
+  {
+    projectIds: ['website'],
+    namespaces: ['auth', 'error'],
+    languages: ['en', 'de'],
+  },
+  fallback
+)
 
 createRoot(document.getElementById('root')).render(
   <LoqlyReact translations={translations} defaultLocale='en'>
@@ -36,24 +55,22 @@ createRoot(document.getElementById('root')).render(
 )
 ```
 
-If you pass a translations object to the plugin, loqly will not fetch translations remotely. Your translations should be structured like this:
+If you pass a fallback object to the plugin, your translations should be structured like this:
 
-```js
-const translations = {
-  'auth.btn.login': {
-    en: 'Login',
-    de: 'Anmelden',
+```json
+{
+  "auth.btn.login": {
+    "en": "Login",
+    "de": "Anmelden"
   },
-  error_404: {
-    en: 'Page not found.',
-    de: 'Seite konnte nicht gefunden werden.',
-  },
+  "error_404": {
+    "en": "Page not found.",
+    "de": "Seite konnte nicht gefunden werden."
+  }
 }
 ```
 
-## Usage
-
-### Translating text
+## Translating in Components
 
 You can access the translation function t anywhere inside your app using the useLoqly hook:
 
@@ -67,7 +84,26 @@ function MyButton() {
 }
 ```
 
-### Updating the language
+## Interpolation
+
+You can easily insert dynamic content into your translations using our string interpolation functionality:
+
+```js
+<h2>
+  {t('User {user} has {count} new notifications', {
+    user: 'Alice',
+    count: 3,
+  })}
+</h2>
+```
+
+This will render as:
+
+```html
+<h2>User Alice has 3 new notifications</h2>
+```
+
+## Updating the language
 
 To change the current language, call updateLanguage from the hook:
 
@@ -79,32 +115,9 @@ function LanguageSwitcher() {
 
   return (
     <>
-      <button onClick={() => updateLanguage('de')}>German</button>
       <button onClick={() => updateLanguage('en')}>English</button>
+      <button onClick={() => updateLanguage('de')}>German</button>
     </>
   )
-}
-```
-
-### Fetching translations manually
-
-If you want to fetch translations directly (without using the provider), you can use the utility function getTranslations:
-
-```js
-import { useState, useEffect } from 'react'
-import { getTranslations } from '@loqly/react'
-
-function CustomLoader() {
-  const [translations, setTranslations] = useState({})
-
-  useEffect(() => {
-    const loadTranslations = async () => {
-      const res = await getTranslations('your-loqly-api-key')
-      setTranslations(res)
-    }
-    loadTranslations()
-  }, [])
-
-  return <pre>{JSON.stringify(translations, null, 2)}</pre>
 }
 ```

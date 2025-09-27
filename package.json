@@ -1,6 +1,6 @@
 {
   "name": "@loqly/react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "The loqly React package helps you use the loqly platform for internationalization and copy management in React projects.",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
@@ -45,16 +45,16 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@loqly/web": "^0.1.9"
+    "@loqly/web": "^0.1.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
-    "vite": "^6.3.6",
     "@vitejs/plugin-react": "^4.2.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "vite": "^6.3.6"
   }
 }
